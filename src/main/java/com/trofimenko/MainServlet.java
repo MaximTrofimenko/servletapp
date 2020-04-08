@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-@WebServlet(urlPatterns = "/cool-servlet")
+@WebServlet(urlPatterns = {"/cool-servlet", "/my-cool-servlet/*"})
 public class MainServlet extends HttpServlet {
 
     @Override
@@ -34,6 +34,13 @@ public class MainServlet extends HttpServlet {
 
         resp.getWriter().write("Method doGet\nURI: " + uri + "\nParams:\n" + params + "\n");
     }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String uri = req.getRequestURI();
+        String params = formatParams(req);
+
+        resp.getWriter().write("Method doPost\nURI: " + uri + "\nParams:\n" + params + "\n");
+    }
 
     /*
     метод красиво выводит в браузере то что нам пришло со строки
@@ -48,6 +55,7 @@ public class MainServlet extends HttpServlet {
                 })
                 .collect(Collectors.joining("\n"));
     }
+
 
 
     @Override
