@@ -1,4 +1,6 @@
 <%@ page import="java.time.LocalDateTime" %>
+<%@ page import="com.trofimenko.User" %>
+<%@ page import="java.util.List" %>
 
 <!doctype html>
 <html>
@@ -20,5 +22,13 @@
 <%= request.getRequestURI()%>
 <br>
 <%= LocalDateTime.now()%>
+<br>
+<br>
+<%--тут мы из заполненого параметра request получаем информацию и отображаем ее--%>
+<%
+    List<User> users = (List) request.getAttribute("users");
+    User anUser = users.get(0);
+%>
+<b><%= anUser.getCountry()%></b>
 </body>
 </html>
