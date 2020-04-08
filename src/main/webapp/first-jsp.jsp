@@ -1,3 +1,5 @@
+<%@ page import="java.time.LocalDateTime" %>
+
 <!doctype html>
 <html>
 <head>
@@ -5,5 +7,18 @@
 </head>
 <body>
 <h1>Hello JSP</h1>
+
+<%
+//    1 способ
+    response.getWriter().write("Google!");
+//    2 способ
+    out.print("Yandex");
+%>
+<br>
+<br>
+<%--3 способ--%>
+<%= request.getRequestURI()%>
+<br>
+<%= LocalDateTime.now()%>
 </body>
 </html>
